@@ -28,6 +28,13 @@ module.exports = function (grunt) {
             dist: 'www'
         },
 
+        'gh-pages': {
+            options: {
+                base: '<%= yeoman.dist %>'
+            },
+            src: '**/*'
+        },
+
         // Environment Variables for Angular App
         // This creates an Angular Module that can be injected via ENV
         // Add any desired constants to the ENV objects below.
@@ -553,6 +560,17 @@ module.exports = function (grunt) {
         ['karma:continuous',
             'connect:coverage:keepalive'
         ]);
+
+
+    grunt.registerTask('deploy', [
+        'compress',
+        //'ionic:build:ios',
+        //'ionic:build:android',
+        //'copy:cordova',
+        //'manifest',
+        'gh-pages'
+    ]);
+
 
     grunt.registerTask('default', [
         'wiredep',

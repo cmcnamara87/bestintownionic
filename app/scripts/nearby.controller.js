@@ -27,10 +27,12 @@
         }
 
         function getNearby() {
+            console.log('Getting location');
             var posOptions = {timeout: 10000, enableHighAccuracy: false};
             $cordovaGeolocation
                 .getCurrentPosition(posOptions)
                 .then(function (position) {
+                    console.log('Lot locatin', position);
                     var lat = position.coords.latitude
                     var long = position.coords.longitude
 
@@ -53,6 +55,7 @@
                     //});
                 }, function (err) {
                     // error
+                    console.log('Failed');
                 });
         }
     }
