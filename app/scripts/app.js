@@ -12,8 +12,12 @@ angular.module('bestintown', [
     'ngCordova'
 ])
 
-    .run(function ($ionicPlatform, $cordovaGeolocation) {
+    .run(function ($ionicPlatform, $cordovaInAppBrowser) {
         $ionicPlatform.ready(function () {
+            if(window.cordova) {
+                window.open = cordova.InAppBrowser.open;
+            }
+
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {

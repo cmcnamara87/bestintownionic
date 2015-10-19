@@ -9,12 +9,15 @@
     function NearbyController($cordovaGeolocation,
                               $ionicPlatform,
                               $http,
-                              ENV) {
+                              ENV,
+                              $state) {
         /* jshint validthis: true */
         var vm = this;
 
         vm.activate = activate;
         vm.title = 'Nearby';
+        vm.openYelp = openYelp;
+        vm.openCategory = openCategory;
 
         activate();
 
@@ -24,6 +27,15 @@
             $ionicPlatform.ready(function () {
                 getNearby();
             });
+        }
+
+        function openYelp(place) {
+            window.open(place.external_url, '_blank');
+        }
+
+        function openCategory($event, category) {
+            $state.go('tab.categories-show', {categoryId: category.id});
+            $event.stopPropagation();
         }
 
         function getNearby() {
