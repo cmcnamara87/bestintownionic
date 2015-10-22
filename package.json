@@ -55,25 +55,9 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "com.ionic.keyboard",
-    "org.apache.cordova.device",
-    "org.apache.cordova.console",
-    "com.ionic.keyboard",
     "org.apache.cordova.geolocation",
-    "com.ionic.keyboard",
-    "com.ionic.keyboard",
-    "org.apache.cordova.console",
-    "org.apache.cordova.console",
-    "org.apache.cordova.device",
-    "org.apache.cordova.geolocation",
-    "org.apache.cordova.device",
-    "org.apache.cordova.console",
-    "org.apache.cordova.console",
-    "org.apache.cordova.device",
-    "org.apache.cordova.console",
-    "org.apache.cordova.geolocation",
-    "org.apache.cordova.geolocation",
-    "com.ionic.keyboard",
-    "com.ionic.keyboard"
+    "cordova-plugin-x-socialsharing",
+    "com.darktalker.cordova.screenshot"
   ],
   "cordovaPlatforms": [
     "ios"

@@ -10,7 +10,7 @@
                               $ionicPlatform,
                               $http,
                               ENV,
-                              $state) {
+                              $state, $cordovaSocialSharing) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -18,6 +18,7 @@
         vm.title = 'Nearby';
         vm.openYelp = openYelp;
         vm.openCategory = openCategory;
+        vm.share = share;
 
         activate();
 
@@ -29,6 +30,30 @@
             });
         }
 
+        function share() {
+            console.log('sharing!')
+
+            window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl');
+
+            //navigator.screenshot.save(function(error,res){
+            //    if(error){
+            //        window.alert(error);
+            //    }else{
+            //        console.log('ok',res.filePath);
+            //
+            //
+            //        //$cordovaSocialSharing
+            //        //    .share('Bestintown!', 'Best in town', res.filePath, 'http://bestintown.co') // Share via native share sheet
+            //        //    .then(function(result) {
+            //        //    }, function(err) {
+            //        //        // An error occured. Show a message to the user
+            //        //        window.alert('error');
+            //        //    });
+            //    }
+            //});
+
+
+        }
         function openYelp(place) {
             window.open(place.external_url, '_blank');
         }
