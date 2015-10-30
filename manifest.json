@@ -1,17 +1,16 @@
 {
   "files": {
     "app": {
-      "version": "19a15da661d84ec63d1821ff51ffcc80b96d1ee8",
+      "version": "8c99369a825644e68e21433d78ed8b396351cc7d",
       "filename": "scripts/scripts.js"
     },
     "style": {
-      "version": "8e4876aa1e57810c36c587513de433a4e242ea45",
+      "version": "6e76f36f27bf29402a70c8adfee0f84b8a595973",
       "filename": "scripts/vendor.js"
     }
   },
   "load": [
     "scripts/scripts.js",
     "scripts/vendor.js"
-  ],
-  "version": "55cfc60268f4de1a9f87053d7bdf8d3e1778ab73"
+  ]
 }
