@@ -57,7 +57,12 @@
     "com.ionic.keyboard",
     "org.apache.cordova.geolocation",
     "cordova-plugin-x-socialsharing",
-    "com.darktalker.cordova.screenshot"
+    "com.darktalker.cordova.screenshot",
+    "phonegap-plugin-push",
+    "com.ionic.keyboard",
+    "org.apache.cordova.console",
+    "org.apache.cordova.device",
+    "org.apache.cordova.geolocation"
   ],
   "cordovaPlatforms": [
     "ios"
