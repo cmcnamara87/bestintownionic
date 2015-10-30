@@ -1,17 +1,16 @@
 {
   "files": {
     "1": {
-      "version": "8cbac082dec1b9bf1bcd8f0d939f159938fbd6d3",
+      "version": "6e76f36f27bf29402a70c8adfee0f84b8a595973",
       "filename": "scripts/vendor.js"
     },
     "2": {
-      "version": "e296fa5e8ed89eb55b5898e7fc84c876ba529095",
+      "version": "8c99369a825644e68e21433d78ed8b396351cc7d",
       "filename": "scripts/scripts.js"
     }
   },
   "load": [
     "scripts/vendor.js",
     "scripts/scripts.js"
-  ],
-  "version": "ebe165949f59d6abbea45b4d5f8830d1a4b0d434"
+  ]
 }
