@@ -1,17 +1,17 @@
 {
   "files": {
-    "1": {
-      "version": "8e4876aa1e57810c36c587513de433a4e242ea47",
-      "filename": "scripts/vendor.js"
+    "scripts/scripts.js": {
+      "filename": "scripts/scripts.js",
+      "version": "f2a6d40f69827b478773eed99775e0afafa158e9392ed24c5d3ad8eff6a691db"
     },
-    "2": {
-      "version": "9d066aa3d80c1268d2bf945e702665853f3b4571",
-      "filename": "scripts/scripts.js"
+    "scripts/vendor.js": {
+      "filename": "scripts/vendor.js",
+      "version": "647d3824040be7d5f1024883e7cab5c41c0f5b5215fb3151a6f448a6258e74a4"
     }
   },
   "load": [
-    "scripts/vendor.js",
-    "scripts/scripts.js"
+    "scripts/scripts.js",
+    "scripts/vendor.js"
   ],
   "root": "./"
 }
