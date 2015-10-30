@@ -1,16 +1,16 @@
 {
   "files": {
-    "app": {
-      "version": "8c99369a825644e68e21433d78ed8b396351cc7d",
-      "filename": "scripts/scripts.js"
-    },
     "style": {
       "version": "6e76f36f27bf29402a70c8adfee0f84b8a595973",
       "filename": "scripts/vendor.js"
+    },
+    "app": {
+      "version": "8c99369a825644e68e21433d78ed8b396351cc7d",
+      "filename": "scripts/scripts.js"
     }
   },
   "load": [
-    "scripts/scripts.js",
-    "scripts/vendor.js"
+    "scripts/vendor.js",
+    "scripts/scripts.js"
   ]
 }
