@@ -1,16 +1,17 @@
 {
   "files": {
     "1": {
-      "version": "6e76f36f27bf29402a70c8adfee0f84b8a595973",
+      "version": "8e4876aa1e57810c36c587513de433a4e242ea45",
       "filename": "scripts/vendor.js"
     },
     "2": {
-      "version": "8c99369a825644e68e21433d78ed8b396351cc7d",
+      "version": "9d066aa3d80c1268d2bf945e702665853f3b4569",
       "filename": "scripts/scripts.js"
     }
   },
   "load": [
     "scripts/vendor.js",
     "scripts/scripts.js"
-  ]
+  ],
+  "root": "./"
 }
