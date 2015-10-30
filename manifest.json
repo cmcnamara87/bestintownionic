@@ -10,8 +10,8 @@
     }
   },
   "load": [
-    "scripts/scripts.js",
-    "scripts/vendor.js"
+    "scripts/vendor.js",
+    "scripts/scripts.js"
   ],
   "root": "./"
 }
