@@ -1,0 +1,17 @@
+{
+  "files": {
+    "app": {
+      "version": "19a15da661d84ec63d1821ff51ffcc80b96d1ee8",
+      "filename": "scripts/scripts.js"
+    },
+    "style": {
+      "version": "8e4876aa1e57810c36c587513de433a4e242ea45",
+      "filename": "scripts/vendor.js"
+    }
+  },
+  "load": [
+    "scripts/scripts.js",
+    "scripts/vendor.js"
+  ],
+  "version": "55cfc60268f4de1a9f87053d7bdf8d3e1778ab73"
+}
