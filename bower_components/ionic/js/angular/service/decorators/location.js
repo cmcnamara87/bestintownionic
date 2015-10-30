@@ -11,11 +11,12 @@ function($provide) {
     //found nearest to body's scrollTop is set to scroll to an element
     //with that ID.
     $location.hash = function(value) {
-      if (isDefined(value)) {
+      if (isDefined(value) && value.length > 0) {
         $timeout(function() {
           var scroll = document.querySelector('.scroll-content');
-          if (scroll)
+          if (scroll) {
             scroll.scrollTop = 0;
+          }
         }, 0, false);
       }
       return $location.__hash(value);

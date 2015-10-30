@@ -3,8 +3,7 @@
  * TODO document
  */
 
-IonicModule
-.factory('$ionicViewSwitcher',[
+IonicModule.factory('$ionicViewSwitcher', [
   '$timeout',
   '$document',
   '$q',
@@ -21,7 +20,6 @@ function($timeout, $document, $q, $ionicClickBlock, $ionicConfig, $ionicNavBarDe
   var DATA_FALLBACK_TIMER = '$fallbackTimer';
   var DATA_VIEW = '$viewData';
   var NAV_VIEW_ATTR = 'nav-view';
-  var HISTORY_CURSOR_ATTR = 'history-cursor';
   var VIEW_STATUS_ACTIVE = 'active';
   var VIEW_STATUS_CACHED = 'cached';
   var VIEW_STATUS_STAGED = 'stage';
@@ -299,28 +297,31 @@ function($timeout, $document, $q, $ionicClickBlock, $ionicConfig, $ionicNavBarDe
         },
 
         emit: function(step, enteringData, leavingData) {
-          var scope = enteringEle.scope();
-          if (scope) {
-            scope.$emit('$ionicView.' + step + 'Enter', enteringData);
-            if (step == 'after') {
-              scope.$emit('$ionicView.enter', enteringData);
+          var enteringScope = enteringEle.scope(),
+            leavingScope = leavingEle && leavingEle.scope();
+
+          if (step == 'after') {
+            if (enteringScope) {
+              enteringScope.$emit('$ionicView.enter', enteringData);
+            }
+
+            if (leavingScope) {
+              leavingScope.$emit('$ionicView.leave', leavingData);
+
+            } else if (enteringScope && leavingData && leavingData.viewId) {
+              enteringScope.$emit('$ionicNavView.leave', leavingData);
             }
           }
 
-          if (leavingEle) {
-            scope = leavingEle.scope();
-            if (scope) {
-              scope.$emit('$ionicView.' + step + 'Leave', leavingData);
-              if (step == 'after') {
-                scope.$emit('$ionicView.leave', leavingData);
-              }
-            }
+          if (enteringScope) {
+            enteringScope.$emit('$ionicView.' + step + 'Enter', enteringData);
+          }
 
-          } else if (scope && leavingData && leavingData.viewId) {
-            scope.$emit('$ionicNavView.' + step + 'Leave', leavingData);
-            if (step == 'after') {
-              scope.$emit('$ionicNavView.leave', leavingData);
-            }
+          if (leavingScope) {
+            leavingScope.$emit('$ionicView.' + step + 'Leave', leavingData);
+
+          } else if (enteringScope && leavingData && leavingData.viewId) {
+            enteringScope.$emit('$ionicNavView.' + step + 'Leave', leavingData);
           }
         },
 
@@ -425,7 +426,7 @@ function($timeout, $document, $q, $ionicClickBlock, $ionicConfig, $ionicNavBarDe
 
 
   function getViewElementIdentifier(locals, view) {
-    if (viewState(locals).abstract) return viewState(locals).name;
+    if (viewState(locals)['abstract']) return viewState(locals).name;
     if (view) return view.stateId || view.viewId;
     return ionic.Utils.nextUid();
   }

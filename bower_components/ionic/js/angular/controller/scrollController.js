@@ -101,8 +101,8 @@ function($scope,
   };
 
   self.resize = function() {
-    return $timeout(resize).then(function() {
-      $element && $element.triggerHandler('scroll.resize');
+    return $timeout(resize, 0, false).then(function() {
+      $element && $element.triggerHandler('scroll-resize');
     });
   };
 
@@ -148,16 +148,15 @@ function($scope,
       var hash = $location.hash();
       var elm = hash && $document[0].getElementById(hash);
       if (!(hash && elm)) {
-        scrollView.scrollTo(0,0, !!shouldAnimate);
+        scrollView.scrollTo(0, 0, !!shouldAnimate);
         return;
       }
       var curElm = elm;
-      var scrollLeft = 0, scrollTop = 0, levelsClimbed = 0;
+      var scrollLeft = 0, scrollTop = 0;
       do {
         if (curElm !== null) scrollLeft += curElm.offsetLeft;
         if (curElm !== null) scrollTop += curElm.offsetTop;
         curElm = curElm.offsetParent;
-        levelsClimbed++;
       } while (curElm.attributes != self.element.attributes && curElm.offsetParent);
       scrollView.scrollTo(scrollLeft, scrollTop, !!shouldAnimate);
     });

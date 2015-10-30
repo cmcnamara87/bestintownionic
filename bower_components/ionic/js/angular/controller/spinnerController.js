@@ -228,7 +228,7 @@
                 };
               },
               t: 1
-            },{
+            }, {
               fn: function() {
                 return {
                   an: 'y2',
@@ -238,7 +238,7 @@
                 };
               },
               t: 1
-            },{
+            }, {
               fn: function() {
                 return {
                   an: STROKE_OPACITY,
@@ -278,7 +278,7 @@
                 };
               },
               t: 1
-            },{
+            }, {
               fn: function() {
                 return {
                   an: STROKE_OPACITY,
@@ -390,16 +390,12 @@
   .controller('$ionicSpinner', [
     '$element',
     '$attrs',
-  function($element, $attrs) {
-    var spinnerName, spinner;
+    '$ionicConfig',
+  function($element, $attrs, $ionicConfig) {
+    var spinnerName;
 
     this.init = function() {
-      spinnerName = $attrs.icon || ionic.Platform.platform();
-      spinner = spinners[spinnerName];
-      if (!spinner) {
-        spinnerName = 'ios';
-        spinner = spinners.ios;
-      }
+      spinnerName = $attrs.icon || $ionicConfig.spinner.icon();
 
       var container = document.createElement('div');
       createSvgElement('svg', {

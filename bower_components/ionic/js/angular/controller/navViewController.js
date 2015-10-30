@@ -26,7 +26,6 @@ function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, 
   var activeEleId;
   var navViewAttr = $ionicViewSwitcher.navViewAttr;
   var disableRenderStartViewId, disableAnimation;
-  var transitionDuration, transitionTiming;
 
   self.scope = $scope;
   self.element = $element;
@@ -39,7 +38,7 @@ function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, 
     // off the DOM so child directives can find it.
     var parent = $element.parent().inheritedData('$uiView');
     var parentViewName = ((parent && parent.state) ? parent.state.name : '');
-    if (navViewName.indexOf('@') < 0) navViewName  = navViewName + '@' + parentViewName;
+    if (navViewName.indexOf('@') < 0) navViewName = navViewName + '@' + parentViewName;
 
     var viewData = { name: navViewName, state: null };
     $element.data('$uiView', viewData);
@@ -222,18 +221,32 @@ function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, 
   };
 
 
-  self.clearCache = function() {
+  self.clearCache = function(stateIds) {
     var viewElements = $element.children();
-    var viewElement, viewScope;
+    var viewElement, viewScope, x, l, y, eleIdentifier;
 
-    for (var x = 0, l = viewElements.length; x < l; x++) {
+    for (x = 0, l = viewElements.length; x < l; x++) {
       viewElement = viewElements.eq(x);
+
+      if (stateIds) {
+        eleIdentifier = viewElement.data(DATA_ELE_IDENTIFIER);
+
+        for (y = 0; y < stateIds.length; y++) {
+          if (eleIdentifier === stateIds[y]) {
+            $ionicViewSwitcher.destroyViewEle(viewElement);
+          }
+        }
+        continue;
+      }
+
       if (navViewAttr(viewElement) == VIEW_STATUS_CACHED) {
         $ionicViewSwitcher.destroyViewEle(viewElement);
+
       } else if (navViewAttr(viewElement) == VIEW_STATUS_ACTIVE) {
         viewScope = viewElement.scope();
         viewScope && viewScope.$broadcast('$ionicView.clearCache');
       }
+
     }
   };
 
@@ -344,7 +357,9 @@ function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, 
 
       backView = $ionicHistory.backView();
 
-      if (!backView || backView.historyId !== $ionicHistory.currentView().historyId) return;
+      var currentView = $ionicHistory.currentView();
+
+      if (!backView || backView.historyId !== currentView.historyId || currentView.canSwipeBack === false) return;
 
       if (!windowWidth) windowWidth = window.innerWidth;
 
@@ -361,7 +376,7 @@ function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, 
         showBackButton: self.showBackButton()
       };
 
-      var switcher = $ionicViewSwitcher.create(self, registerData, backView, $ionicHistory.currentView(), true, false);
+      var switcher = $ionicViewSwitcher.create(self, registerData, backView, currentView, true, false);
       switcher.loadViewElements(registerData);
       switcher.render(registerData);
 
@@ -478,7 +493,7 @@ function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, 
 
   function getAssociatedNavBarCtrl() {
     if (navBarDelegate) {
-      for (var x=0; x < $ionicNavBarDelegate._instances.length; x++) {
+      for (var x = 0; x < $ionicNavBarDelegate._instances.length; x++) {
         if ($ionicNavBarDelegate._instances[x].$$delegateHandle == navBarDelegate) {
           return $ionicNavBarDelegate._instances[x];
         }

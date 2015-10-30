@@ -12,6 +12,8 @@
 
         vm.activate = activate;
         vm.title = 'CategoriesShow';
+        vm.openYelp = openYelp;
+        vm.openCategory = openCategory;
 
         activate();
 
@@ -21,6 +23,15 @@
             $ionicPlatform.ready(function () {
                 getCategories();
             });
+        }
+
+        function openYelp(place) {
+            window.open(place.external_url, '_blank');
+        }
+
+        function openCategory($event, category) {
+            $state.go('tab.categories-show', {categoryId: category.id});
+            $event.stopPropagation();
         }
 
         function getCategories() {

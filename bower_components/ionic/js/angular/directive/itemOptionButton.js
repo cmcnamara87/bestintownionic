@@ -7,6 +7,7 @@ var ITEM_TPL_OPTION_BUTTONS =
 * @parent ionic.directive:ionItem
 * @module ionic
 * @restrict E
+* @description
 * Creates an option button inside a list item, that is visible when the item is swiped
 * to the left by the user.  Swiped open option buttons can be hidden with
 * {@link ionic.service:$ionicListDelegate#closeOptionButtons $ionicListDelegate#closeOptionButtons}.
@@ -27,8 +28,7 @@ var ITEM_TPL_OPTION_BUTTONS =
 * </ion-list>
 * ```
 */
-IonicModule
-.directive('ionOptionButton', ['$compile', function($compile) {
+IonicModule.directive('ionOptionButton', [function() {
   function stopPropagation(e) {
     e.stopPropagation();
   }

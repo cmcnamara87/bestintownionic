@@ -70,10 +70,12 @@ IonicModule
   '$timeout',
   '$ionicPlatform',
   '$ionicTemplateLoader',
-  '$q',
+  '$$q',
   '$log',
   '$ionicClickBlock',
-function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTemplateLoader, $q, $log, $ionicClickBlock) {
+  '$window',
+  'IONIC_BACK_PRIORITY',
+function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTemplateLoader, $$q, $log, $ionicClickBlock, $window, IONIC_BACK_PRIORITY) {
 
   /**
    * @ngdoc controller
@@ -100,7 +102,9 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
      *  - `{string=}` `animation` The animation to show & hide with.
      *    Default: 'slide-in-up'
      *  - `{boolean=}` `focusFirstInput` Whether to autofocus the first input of
-     *    the modal when shown.  Default: false.
+     *    the modal when shown. Will only show the keyboard on iOS, to force the keyboard to show
+     *    on Android, please use the [Ionic keyboard plugin](https://github.com/driftyco/ionic-plugin-keyboard#keyboardshow).
+     *    Default: false.
      *  - `{boolean=}` `backdropClickToClose` Whether to close the modal on clicking the backdrop.
      *    Default: true.
      *  - `{boolean=}` `hardwareBackButtonClose` Whether the modal can be closed using the hardware
@@ -121,16 +125,22 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
       var self = this;
 
       if (self.scope.$$destroyed) {
-        $log.error('Cannot call ' +  self.viewType + '.show() after remove(). Please create a new ' +  self.viewType + ' instance.');
-        return;
+        $log.error('Cannot call ' + self.viewType + '.show() after remove(). Please create a new ' + self.viewType + ' instance.');
+        return $$q.when();
       }
+
+      // on iOS, clicks will sometimes bleed through/ghost click on underlying
+      // elements
+      $ionicClickBlock.show(600);
+      stack.add(self);
 
       var modalEl = jqLite(self.modalEl);
 
       self.el.classList.remove('hide');
       $timeout(function() {
+        if (!self._isShown) return;
         $ionicBody.addClass(self.viewType + '-open');
-      }, 400);
+      }, 400, false);
 
       if (!self.el.parentElement) {
         modalEl.addClass(self.animation);
@@ -145,10 +155,11 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
       if (target && self.positionView) {
         self.positionView(target, modalEl);
         // set up a listener for in case the window size changes
-        ionic.on('resize',function() {
-          ionic.off('resize',null,window);
-          self.positionView(target,modalEl);
-        },window);
+
+        self._onWindowResize = function() {
+          if (self._isShown) self.positionView(target, modalEl);
+        };
+        ionic.on('resize', self._onWindowResize, window);
       }
 
       modalEl.addClass('ng-enter active')
@@ -157,12 +168,13 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
       self._isShown = true;
       self._deregisterBackButton = $ionicPlatform.registerBackButtonAction(
         self.hardwareBackButtonClose ? angular.bind(self, self.hide) : noop,
-        PLATFORM_BACK_BUTTON_PRIORITY_MODAL
+        IONIC_BACK_PRIORITY.modal
       );
 
       ionic.views.Modal.prototype.show.call(self);
 
       $timeout(function() {
+        if (!self._isShown) return;
         modalEl.addClass('ng-enter-active');
         ionic.trigger('resize');
         self.scope.$parent && self.scope.$parent.$broadcast(self.viewType + '.shown', self);
@@ -171,9 +183,10 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
       }, 20);
 
       return $timeout(function() {
+        if (!self._isShown) return;
         //After animating in, allow hide on backdrop click
         self.$el.on('click', function(e) {
-          if (self.backdropClickToClose && e.target === self.el) {
+          if (self.backdropClickToClose && e.target === self.el && stack.isHighest(self)) {
             self.hide();
           }
         });
@@ -193,14 +206,16 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
       // on iOS, clicks will sometimes bleed through/ghost click on underlying
       // elements
       $ionicClickBlock.show(600);
+      stack.remove(self);
 
       self.el.classList.remove('active');
       modalEl.addClass('ng-leave');
 
       $timeout(function() {
+        if (self._isShown) return;
         modalEl.addClass('ng-leave-active')
                .removeClass('ng-enter ng-enter-active active');
-      }, 20);
+      }, 20, false);
 
       self.$el.off('click');
       self._isShown = false;
@@ -211,7 +226,7 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
 
       // clean up event listeners
       if (self.positionView) {
-        ionic.off('resize',null,window);
+        ionic.off('resize', self._onWindowResize, window);
       }
 
       return $timeout(function() {
@@ -280,6 +295,23 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
     return modal;
   };
 
+  var modalStack = [];
+  var stack = {
+    add: function(modal) {
+      modalStack.push(modal);
+    },
+    remove: function(modal) {
+      var index = modalStack.indexOf(modal);
+      if (index > -1 && index < modalStack.length) {
+        modalStack.splice(index, 1);
+      }
+    },
+    isHighest: function(modal) {
+      var index = modalStack.indexOf(modal);
+      return (index > -1 && index === modalStack.length - 1);
+    }
+  };
+
   return {
     /**
      * @ngdoc method
@@ -315,6 +347,8 @@ function($rootScope, $ionicBody, $compile, $timeout, $ionicPlatform, $ionicTempl
         cb && cb(modal);
         return modal;
       });
-    }
+    },
+
+    stack: stack
   };
 }]);
