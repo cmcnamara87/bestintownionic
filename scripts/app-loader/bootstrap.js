@@ -81,47 +81,55 @@ function loadManifest(manifest,fromLocalStorage,timeout){
         el.async = false;
       // Load CSS
       } else {
-        el= document.createElement('link');
-        el.rel = "stylesheet";
-        el.href = src + '?' + now;
-        el.type = "text/css";
+          if(src.indexOf('://') >= 0) {
+              // okay lets ajax it in
+              console.log('creating style element');
+              console.log(src);
 
-          /*
-           console.log('creating link element');
-           console.log(src);
+              var request = new XMLHttpRequest();
+              request.open('GET', src, true);
 
-           var request = new XMLHttpRequest();
-           request.open('GET', src, true);
+              request.onload = function() {
+                  if (request.status >= 200 && request.status < 400) {
+                      // Success!
+                      var resp = request.responseText;
+                      resp = resp.replace('url(../', 'url(');
+                      console.log(resp);
+                      el= document.createElement('style');
+                      el.type = 'text/css';
+                      if (el.styleSheet){
+                          el.styleSheet.cssText = resp;
+                      } else {
+                          el.appendChild(document.createTextNode(resp));
+                      }
+                      head.appendChild(el);
+                  } else {
+                      // We reached our target server, but it returned an error
+                      console.log('error');
+                  }
+              };
 
-           request.onload = function() {
-           if (request.status >= 200 && request.status < 400) {
-           // Success!
-           var resp = request.responseText;
-           console.log(resp);
-           el= document.createElement('style');
-           el.type = 'text/css';
-           if (el.styleSheet){
-           el.styleSheet.cssText = resp;
-           } else {
-           el.appendChild(document.createTextNode(resp));
-           }
-           head.appendChild(el);
-           } else {
-           // We reached our target server, but it returned an error
-           console.log('error');
-           }
-           };
+              request.onerror = function() {
+                  // There was a connection error of some sort
+                  console.log('on error');
+              };
 
-           request.onerror = function() {
-           // There was a connection error of some sort
-           console.log('on error');
-           };
+              request.send();
 
-           request.send();
+              //$("head").append("<style>" + data + "</style>");
+              return;
+          } else {
+              console.log('adding through link');
+              el= document.createElement('link');
+              el.rel = "stylesheet";
+              el.href = src + '?' + now;
+              el.type = "text/css";
+              head.appendChild(el);
+              return;
+          }
 
-           //$("head").append("<style>" + data + "</style>");
-           return;
-           */
+
+
       }
       head.appendChild(el);
     });
