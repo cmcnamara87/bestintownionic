@@ -1,4 +1,6 @@
 (function(){
+
+    console.log('bootstrapping now');
 // Retrieved and slightly modified from: https://github.com/typicode/pegasus
 // --------------------------------------------------------------------------
 //
@@ -81,6 +83,7 @@ function loadManifest(manifest,fromLocalStorage,timeout){
         el.async = false;
       // Load CSS
       } else {
+          console.log('creating link element');
         el= document.createElement('link');
         el.rel = "stylesheet";
         el.href = src + '?' + now;
