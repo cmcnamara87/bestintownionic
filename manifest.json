@@ -8,6 +8,10 @@
       "filename": "styles/style.css",
       "version": "b6be5cb61a2bf842c01b479be6354ca41a147975c7b20eadd6a42cfd9dda0bb2"
     },
+    "scripts/vendor.js": {
+      "filename": "scripts/vendor.js",
+      "version": "e48a2687ad48e2911703e7d6604e78054cb9f7080c9e5ad23658241fa52e0729"
+    },
     "scripts/scripts.js": {
       "filename": "scripts/scripts.js",
       "version": "7a6f9412496d95eee40e504bef1b075dc8fbb01b628c837ca31b8964c6be2cd7"
@@ -16,9 +20,25 @@
       "filename": "scripts/templates.js",
       "version": "14e4a249614a4b3dc0b283a26481b21962735ce393da06640f9306c5a1e18278"
     },
-    "scripts/vendor.js": {
-      "filename": "scripts/vendor.js",
-      "version": "e48a2687ad48e2911703e7d6604e78054cb9f7080c9e5ad23658241fa52e0729"
+    "fonts/ionicons.eot": {
+      "filename": "fonts/ionicons.eot",
+      "version": "b4fb94d228c4e361d4023ded06e936faef1dd47803078dc09c6f817c10200f94"
+    },
+    "fonts/ionicons.svg": {
+      "filename": "fonts/ionicons.svg",
+      "version": "a627d9068c1235d9b3c95c405eb6ecb64a290b159cf5e926c0d96d89b24cd5fc"
+    },
+    "fonts/ionicons.ttf": {
+      "filename": "fonts/ionicons.ttf",
+      "version": "0f0a877cb57958bb6f34bac7695aca9f90f62d9a89e9dc6c16bd96e0aca8c987"
+    },
+    "fonts/ionicons.woff": {
+      "filename": "fonts/ionicons.woff",
+      "version": "4beadc9808f7c1c96c3ca7276372fb4b351891adc1261a989f2553147505eec8"
+    },
+    "images/ionic.png": {
+      "filename": "images/ionic.png",
+      "version": "175f748da594d57c2ef73af0f25e1e9ccf7b67f5766ed879398bb25a74e677dc"
     }
   },
   "load": [
@@ -26,7 +46,12 @@
     "styles/style.css",
     "scripts/vendor.js",
     "scripts/scripts.js",
-    "scripts/templates.js"
+    "scripts/templates.js",
+    "fonts/ionicons.eot",
+    "fonts/ionicons.svg",
+    "fonts/ionicons.ttf",
+    "fonts/ionicons.woff",
+    "images/ionic.png"
   ],
   "root": "./"
 }
