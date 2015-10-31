@@ -4,10 +4,6 @@
       "filename": "styles/vendor.css",
       "version": "66cc166bc809447420c7e28ee9b2250ca801ac44bf828870d08439cafc9c3a5e"
     },
-    "styles/style.css": {
-      "filename": "styles/style.css",
-      "version": "79afbc220a785db4090a7f5517c1023ad306a1f10365bab472132c682fb79b13"
-    },
     "scripts/vendor.js": {
       "filename": "scripts/vendor.js",
       "version": "e48a2687ad48e2911703e7d6604e78054cb9f7080c9e5ad23658241fa52e0729"
@@ -43,7 +39,6 @@
   },
   "load": [
     "styles/vendor.css",
-    "styles/style.css",
     "scripts/vendor.js",
     "scripts/scripts.js",
     "scripts/templates.js",
