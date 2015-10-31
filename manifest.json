@@ -4,13 +4,17 @@
       "filename": "styles/vendor.css",
       "version": "66cc166bc809447420c7e28ee9b2250ca801ac44bf828870d08439cafc9c3a5e"
     },
+    "styles/style.css": {
+      "filename": "styles/style.css",
+      "version": "15c42ab7768d955ec0667195e339104557827893b16cc3e7412c76e7c2fcd371"
+    },
     "scripts/scripts.js": {
       "filename": "scripts/scripts.js",
       "version": "7a6f9412496d95eee40e504bef1b075dc8fbb01b628c837ca31b8964c6be2cd7"
     },
     "scripts/templates.js": {
       "filename": "scripts/templates.js",
-      "version": "a0623cf49f2bec89683f7c3b50be7e8bb2f8be9e623875d3b7c3ec26a28839b6"
+      "version": "81ee5288353c5dbc7ad20b3d8676e3985cbd6ecc8912508a07d931643063c788"
     },
     "scripts/vendor.js": {
       "filename": "scripts/vendor.js",
