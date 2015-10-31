@@ -85,17 +85,35 @@ function loadManifest(manifest,fromLocalStorage,timeout){
       } else {
           console.log('creating link element');
 
-          pegasus(src).then(loadManifest,function(xhr){
-              console.log('made request, got rsponse', xhr);
-              el= document.createElement('style');
-              el.type = 'text/css';
-              if (el.styleSheet){
-                  el.styleSheet.cssText = xhr.text;
+          var request = new XMLHttpRequest();
+          request.open('GET', '/my/url', true);
+
+          request.onload = function() {
+              if (request.status >= 200 && request.status < 400) {
+                  // Success!
+                  var resp = request.responseText;
+                  console.log(resp);
+                  el= document.createElement('style');
+                  el.type = 'text/css';
+                  if (el.styleSheet){
+                      el.styleSheet.cssText = resp;
+                  } else {
+                      el.appendChild(document.createTextNode(resp));
+                  }
+                  head.appendChild(el);
               } else {
-                  el.appendChild(document.createTextNode(xhr.text));
+                  // We reached our target server, but it returned an error
+                    console.log('error');
               }
-              head.appendChild(el);
-          });
+          };
+
+          request.onerror = function() {
+              // There was a connection error of some sort
+              console.log('on error');
+          };
+
+          request.send();
+
           //$("head").append("<style>" + data + "</style>");
         return;
 
