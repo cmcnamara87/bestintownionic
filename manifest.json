@@ -30,7 +30,8 @@
     "scripts/app-loader/autoupdate.js",
     "scripts/vendor.js",
     "scripts/scripts.js",
-    "scripts/templates.js"
+    "scripts/templates.js",
+    "styles/vendor.css"
   ],
   "root": "./"
 }
