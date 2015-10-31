@@ -1,5 +1,9 @@
 {
   "files": {
+    "styles/vendor.css": {
+      "filename": "styles/vendor.css",
+      "version": "66cc166bc809447420c7e28ee9b2250ca801ac44bf828870d08439cafc9c3a5e"
+    },
     "scripts/scripts.js": {
       "filename": "scripts/scripts.js",
       "version": "7a6f9412496d95eee40e504bef1b075dc8fbb01b628c837ca31b8964c6be2cd7"
@@ -19,19 +23,16 @@
     "scripts/app-loader/autoupdate.js": {
       "filename": "scripts/app-loader/autoupdate.js",
       "version": "8bfd92e104338ccbc901e420fce8904ee89d584f3cf146564fb486d22c21e0cb"
-    },
-    "styles/vendor.css": {
-      "filename": "styles/vendor.css",
-      "version": "66cc166bc809447420c7e28ee9b2250ca801ac44bf828870d08439cafc9c3a5e"
     }
   },
   "load": [
+    "styles/vendor.css",
+    "styles/style.css",
     "scripts/app-loader/cordova-app-loader-complete.js",
     "scripts/app-loader/autoupdate.js",
     "scripts/vendor.js",
     "scripts/scripts.js",
-    "scripts/templates.js",
-    "styles/vendor.css"
+    "scripts/templates.js"
   ],
   "root": "./"
 }
