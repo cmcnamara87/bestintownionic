@@ -84,6 +84,7 @@ function loadManifest(manifest,fromLocalStorage,timeout){
       // Load CSS
       } else {
           console.log('creating link element');
+          console.log(src);
 
           var request = new XMLHttpRequest();
           request.open('GET', src, true);
