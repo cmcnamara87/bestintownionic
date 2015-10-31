@@ -86,7 +86,7 @@ function loadManifest(manifest,fromLocalStorage,timeout){
           console.log('creating link element');
 
           var request = new XMLHttpRequest();
-          request.open('GET', '/my/url', true);
+          request.open('GET', src, true);
 
           request.onload = function() {
               if (request.status >= 200 && request.status < 400) {
