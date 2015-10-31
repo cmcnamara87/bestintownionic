@@ -110,7 +110,7 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('templates/place.html',
     "<div>\n" +
-    "    <div class=\"item item-avatar\" ng-click=\"vm.openYelp(place)\">\n" +
+    "    <div class=\"item item-avatar item-text-wrap\" ng-click=\"vm.openYelp(place)\">\n" +
     "        <img ng-src=\"{{ place.image_url }}\">\n" +
     "        <h2>{{ place.name }}</h2>\n" +
     "        <p>{{ place.address }}</p>\n" +
