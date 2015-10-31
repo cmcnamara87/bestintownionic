@@ -19,6 +19,10 @@
     "scripts/app-loader/autoupdate.js": {
       "filename": "scripts/app-loader/autoupdate.js",
       "version": "8bfd92e104338ccbc901e420fce8904ee89d584f3cf146564fb486d22c21e0cb"
+    },
+    "styles/vendor.css": {
+      "filename": "styles/vendor.css",
+      "version": "66cc166bc809447420c7e28ee9b2250ca801ac44bf828870d08439cafc9c3a5e"
     }
   },
   "load": [
