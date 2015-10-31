@@ -4,6 +4,10 @@
       "filename": "scripts/scripts.js",
       "version": "7a6f9412496d95eee40e504bef1b075dc8fbb01b628c837ca31b8964c6be2cd7"
     },
+    "scripts/templates.js": {
+      "filename": "scripts/templates.js",
+      "version": "74f48930a68f573cbac1c6e2ef65ea916fa931508dfb961d1e39756bdcb96893"
+    },
     "scripts/vendor.js": {
       "filename": "scripts/vendor.js",
       "version": "647d3824040be7d5f1024883e7cab5c41c0f5b5215fb3151a6f448a6258e74a4"
@@ -11,7 +15,8 @@
   },
   "load": [
     "scripts/vendor.js",
-    "scripts/scripts.js"
+    "scripts/scripts.js",
+    "scripts/templates.js"
   ],
   "root": "./"
 }
