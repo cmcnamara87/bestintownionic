@@ -84,10 +84,25 @@ function loadManifest(manifest,fromLocalStorage,timeout){
       // Load CSS
       } else {
           console.log('creating link element');
-        el= document.createElement('link');
-        el.rel = "stylesheet";
-        el.href = src + '?' + now;
-        el.type = "text/css";
+
+          pegasus(src).then(loadManifest,function(xhr){
+              console.log('made request, got rsponse', xhr);
+              el= document.createElement('style');
+              el.type = 'text/css';
+              if (el.styleSheet){
+                  el.styleSheet.cssText = xhr.text;
+              } else {
+                  el.appendChild(document.createTextNode(xhr.text));
+              }
+              head.appendChild(el);
+          });
+          //$("head").append("<style>" + data + "</style>");
+        return;
+
+
+        //el.rel = "stylesheet";
+        //el.href = src + '?' + now;
+        //el.type = "text/css";
       }
       head.appendChild(el);
     });
