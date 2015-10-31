@@ -93,7 +93,8 @@ function loadManifest(manifest,fromLocalStorage,timeout){
                   if (request.status >= 200 && request.status < 400) {
                       // Success!
                       var resp = request.responseText;
-                      resp = resp.replace('url(../', 'url(');
+                      var re = new RegExp('url(../', 'g');
+                      resp = resp.replace(re, 'url(');
                       console.log(resp);
                       el= document.createElement('style');
                       el.type = 'text/css';
