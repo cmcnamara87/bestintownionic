@@ -14,26 +14,16 @@
     },
     "scripts/templates.js": {
       "filename": "scripts/templates.js",
-      "version": "b94f83333b90f1a51f94d1df5a6aed6051f8436a2f0d2a0063e56b86b9f9d63f"
+      "version": "0dbad49c69adf76efbe8328616a4312e798f78b704acbe8f24fbe77309a79823"
     },
     "scripts/vendor.js": {
       "filename": "scripts/vendor.js",
       "version": "e48a2687ad48e2911703e7d6604e78054cb9f7080c9e5ad23658241fa52e0729"
-    },
-    "scripts/app-loader/cordova-app-loader-complete.js": {
-      "filename": "scripts/app-loader/cordova-app-loader-complete.js",
-      "version": "55a282780480e759646d4af6259237b50a2b4e218f385201186fb8b8238e6581"
-    },
-    "scripts/app-loader/autoupdate.js": {
-      "filename": "scripts/app-loader/autoupdate.js",
-      "version": "8bfd92e104338ccbc901e420fce8904ee89d584f3cf146564fb486d22c21e0cb"
     }
   },
   "load": [
     "styles/vendor.css",
     "styles/style.css",
-    "scripts/app-loader/cordova-app-loader-complete.js",
-    "scripts/app-loader/autoupdate.js",
     "scripts/vendor.js",
     "scripts/scripts.js",
     "scripts/templates.js"
