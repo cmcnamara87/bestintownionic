@@ -34,24 +34,27 @@
         function share() {
             console.log('sharing!')
 
-            window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl');
+            $ionicLoading.show({
+                template: 'Taking screenshot!'
+            });
 
-            //navigator.screenshot.save(function(error,res){
-            //    if(error){
-            //        window.alert(error);
-            //    }else{
-            //        console.log('ok',res.filePath);
-            //
-            //
-            //        //$cordovaSocialSharing
-            //        //    .share('Bestintown!', 'Best in town', res.filePath, 'http://bestintown.co') // Share via native share sheet
-            //        //    .then(function(result) {
-            //        //    }, function(err) {
-            //        //        // An error occured. Show a message to the user
-            //        //        window.alert('error');
-            //        //    });
-            //    }
-            //});
+            navigator.screenshot.save(function(error,res){
+                if(error){
+                    $ionicLoading.hide();
+                    window.alert(error);
+                }else{
+                    $ionicLoading.hide();
+                    console.log('ok',res.filePath);
+
+                    $cordovaSocialSharing
+                        .share('Checkout out these places #bestintown', 'Best in town', res.filePath) // Share via native share sheet
+                        .then(function(result) {
+                        }, function(err) {
+                            // An error occured. Show a message to the user
+                            window.alert('error');
+                        });
+                }
+            });
 
 
         }
