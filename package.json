@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
+    "cordova": "^5.3.3",
     "elementtree": "0.1.6",
     "glob": "~4.3.5",
     "grunt": "~0.4.5",
