@@ -81,10 +81,56 @@ function loadManifest(manifest,fromLocalStorage,timeout){
         el.async = false;
       // Load CSS
       } else {
-        el= document.createElement('link');
-        el.rel = "stylesheet";
-        el.href = src + '?' + now;
-        el.type = "text/css";
+          if(src.indexOf('://') >= 0) {
+              // okay lets ajax it in
+              console.log('creating style element');
+              console.log(src);
+
+              var request = new XMLHttpRequest();
+              request.open('GET', src, true);
+
+              request.onload = function() {
+                  if (request.status >= 200 && request.status < 400) {
+                      // Success!
+                      var resp = request.responseText;
+                      var re = new RegExp('url\\(\.\./', 'g');
+                      resp = resp.replace(re, 'url(');
+                      console.log(resp);
+                      el= document.createElement('style');
+                      el.type = 'text/css';
+                      if (el.styleSheet){
+                          el.styleSheet.cssText = resp;
+                      } else {
+                          el.appendChild(document.createTextNode(resp));
+                      }
+                      head.appendChild(el);
+                  } else {
+                      // We reached our target server, but it returned an error
+                      console.log('error');
+                  }
+              };
+
+              request.onerror = function() {
+                  // There was a connection error of some sort
+                  console.log('on error');
+              };
+
+              request.send();
+
+              //$("head").append("<style>" + data + "</style>");
+              return;
+          } else {
+              console.log('adding through link');
+              el= document.createElement('link');
+              el.rel = "stylesheet";
+              el.href = src + '?' + now;
+              el.type = "text/css";
+              head.appendChild(el);
+              return;
+          }
+
+
+
       }
       head.appendChild(el);
     });
@@ -97,7 +143,7 @@ function loadManifest(manifest,fromLocalStorage,timeout){
     manifest.root += '/';
 
   // Step 4: Save manifest for next time
-  if(!fromLocalStorage) 
+  if(!fromLocalStorage)
     localStorage.setItem('manifest',JSON.stringify(manifest));
 
   // Step 5: Load Scripts

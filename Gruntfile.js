@@ -115,26 +115,43 @@ module.exports = function (grunt) {
             src: '**/*'
         },
 
+        ngtemplates: {
+            bestintown: {
+                cwd: '<%= yeoman.app %>',
+                src: 'templates/**/*.html',
+                dest: 'www/scripts/templates.js'
+            }
+        },
+
         jsonmanifest: {
             generate: {
                 options: {
                     basePath: 'www',
                     exclude: [],
                     //load all found assets
-                    loadall: false,
+                    loadall: true,
                     //manually add files to the manifest
                     "files": {
                     },
                     //manually define the files that should be injected into the page
                     "load": [
+                        'styles/vendor.css',
+                        'styles/style.css',
                         'scripts/vendor.js',
-                        'scripts/scripts.js'
+                        'scripts/scripts.js',
+                        'scripts/templates.js'
                     ],
                     // root location of files to be loaded in the load array.
                     root: "./"
                 },
                 src: [
-                    'scripts/*'
+                    'styles/vendor.css',
+                    'styles/style.css',
+                    'scripts/vendor.js',
+                    'scripts/scripts.js',
+                    'scripts/templates.js',
+                    'fonts/*',
+                    'images/*',
                     //'scripts/scripts.js'
                     //'styles/**/*.css'
                 ],
@@ -662,6 +679,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('compress', [
         'clean',
+        'ngtemplates',
         'ngconstant:production',
         'wiredep',
         'useminPrepare',

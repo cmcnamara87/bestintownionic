@@ -8,6 +8,7 @@
     "elementtree": "0.1.6",
     "glob": "~4.3.5",
     "grunt": "~0.4.5",
+    "grunt-angular-templates": "^0.5.7",
     "grunt-autoprefixer": "~2.2.0",
     "grunt-concurrent": "~1.0.0",
     "grunt-contrib-clean": "~0.6.0",
@@ -60,14 +61,13 @@
     "cordova-plugin-x-socialsharing",
     "com.darktalker.cordova.screenshot",
     "phonegap-plugin-push",
+    "org.apache.cordova.console",
+    "org.apache.cordova.geolocation",
+    "com.ionic.keyboard",
     "cordova-plugin-file",
     "cordova-plugin-file-transfer"
   ],
   "cordovaPlatforms": [
-    {
-      "platform": "ios",
-      "version": "3.7.0",
-      "locator": "ios@3.7.0"
-    }
+    "ios"
   ]
 }
