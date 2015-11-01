@@ -10,7 +10,9 @@
                               $ionicPlatform,
                               $http,
                               ENV,
-                              $state, $cordovaSocialSharing) {
+                              $state,
+                              $cordovaSocialSharing,
+                              $ionicLoading) {
         /* jshint validthis: true */
         var vm = this;
 
