@@ -42,18 +42,15 @@
             });
 
             $timeout(function() {
+                $ionicLoading.hide();
                 if(!navigator.screenshot) {
-                    $ionicLoading.hide();
                     return;
                 }
                 navigator.screenshot.save(function(error,res){
                     if(error){
-                        $ionicLoading.hide();
                         window.alert(error);
                     }else{
-                        $ionicLoading.hide();
                         console.log('ok',res.filePath);
-
                         $cordovaSocialSharing
                             .share('Checkout out these places #bestintown', 'Best in town', res.filePath) // Share via native share sheet
                             .then(function(result) {
