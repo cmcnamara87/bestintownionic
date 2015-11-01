@@ -200,18 +200,18 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <!-- Nearby Tab -->\n" +
     "    <ion-tab title=\"Nearby\" icon-off=\"ion-radio-waves\" icon-on=\"ion-radio-waves\" href=\"#/tab/nearby\">\n" +
-    "        <ion-nav-view name=\"tab-chats\"></ion-nav-view>\n" +
+    "        <ion-nav-view name=\"tab-nearby\"></ion-nav-view>\n" +
     "    </ion-tab>\n" +
     "\n" +
     "  <!-- Categories Tab -->\n" +
     "  <ion-tab title=\"Categories\" icon-off=\"ion-ios-list-outline\" icon-on=\"ion-ios-list-outline\" href=\"#/tab/categories\">\n" +
-    "    <ion-nav-view name=\"tab-dash\"></ion-nav-view>\n" +
+    "    <ion-nav-view name=\"tab-categories\"></ion-nav-view>\n" +
     "  </ion-tab>\n" +
     "\n" +
     "  <!-- Account Tab -->\n" +
-    "  <ion-tab title=\"Settings\" icon-off=\"ion-ios-gear-outline\" icon-on=\"ion-ios-gear\" href=\"#/tab/account\">\n" +
-    "    <ion-nav-view name=\"tab-account\"></ion-nav-view>\n" +
-    "  </ion-tab>\n" +
+    "  <!--<ion-tab title=\"Settings\" icon-off=\"ion-ios-gear-outline\" icon-on=\"ion-ios-gear\" href=\"#/tab/account\">-->\n" +
+    "    <!--<ion-nav-view name=\"tab-account\"></ion-nav-view>-->\n" +
+    "  <!--</ion-tab>-->\n" +
     "\n" +
     "\n" +
     "</ion-tabs>\n"
