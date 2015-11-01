@@ -21,8 +21,27 @@ angular.module('bestintown', [
     'ngCordova'
 ])
 
-    .run(function ($ionicPlatform, $cordovaInAppBrowser, $ionicPopup, ENV, $http) {
+    .run(function ($ionicPlatform, $cordovaInAppBrowser, $ionicPopup, ENV, $http, $cordovaGoogleAnalytics) {
         $ionicPlatform.ready(function () {
+
+
+            // turn on debug mode
+            // https://github.com/danwilson/google-analytics-plugin#javascript-usage
+            $cordovaGoogleAnalytics.debugMode();
+
+            // start tracker
+            // https://developers.google.com/analytics/devguides/collection/analyticsjs/
+
+            $cordovaGoogleAnalytics.startTrackerWithId('UA-51312192-7');
+
+            // track a view
+            // https://developers.google.com/analytics/devguides/collection/analyticsjs/screens
+            // Hint: Currently no support for appName, appId, appVersion, appInstallerId
+            //       If you need support for it, please create an issue on github:
+            //       https://github.com/driftyco/ng-cordova/issues
+
+            $cordovaGoogleAnalytics.trackView('Home Screen');
+
             if(window.cordova) {
                 window.open = cordova.InAppBrowser.open;
             }
