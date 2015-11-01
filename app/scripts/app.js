@@ -97,50 +97,61 @@ angular.module('bestintown', [
             .state('tab.categories', {
                 url: '/categories',
                 views: {
-                    'tab-dash': {
+                    'tab-categories': {
                         templateUrl: 'templates/categories.html',
                         controller: 'CategoriesController as vm'
                     }
                 }
             })
+
             .state('tab.categories-show', {
                 url: '/categories/:categoryId',
                 views: {
-                    'tab-dash': {
+                    'tab-categories': {
                         templateUrl: 'templates/categories-show.html',
                         controller: 'CategoriesShowController as vm'
                     }
                 }
             })
 
-            .state('tab.hotspots-show', {
-                url: '/hotspots/:hotspotId?lat?lon',
-                views: {
-                    'tab-chats': {
-                        templateUrl: 'templates/hotspots-show.html',
-                        controller: 'HotspotsShowController as vm'
-                    }
-                }
-            })
+            //.state('tab.hotspots-show', {
+            //    url: '/hotspots/:hotspotId?lat?lon',
+            //    views: {
+            //        'tab-chats': {
+            //            templateUrl: 'templates/hotspots-show.html',
+            //            controller: 'HotspotsShowController as vm'
+            //        }
+            //    }
+            //})
 
             .state('tab.nearby', {
                 url: '/nearby',
                 views: {
-                    'tab-chats': {
+                    'tab-nearby': {
                         templateUrl: 'templates/nearby.html',
                         controller: 'NearbyController as vm'
                     }
                 }
             })
-            .state('tab.chat-detail', {
-                url: '/chats/:chatId',
+            .state('tab.nearby-categories-show', {
+                url: '/nearby/categories/:categoryId',
                 views: {
-                    'tab-chats': {
-                        templateUrl: 'templates/chat-detail.html',
-                        controller: 'ChatDetailCtrl'
+                    'tab-nearby': {
+                        templateUrl: 'templates/categories-show.html',
+                        controller: 'CategoriesShowController as vm'
                     }
                 }
             })
+
+            //.state('tab.chat-detail', {
+            //    url: '/chats/:chatId',
+            //    views: {
+            //        'tab-chats': {
+            //            templateUrl: 'templates/chat-detail.html',
+            //            controller: 'ChatDetailCtrl'
+            //        }
+            //    }
+            //})
 
             .state('tab.account', {
                 url: '/account',

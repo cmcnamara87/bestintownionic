@@ -6,7 +6,13 @@
         .controller('CategoriesShowController', CategoriesShowController);
 
     /* @ngInject */
-    function CategoriesShowController($http, $stateParams, ENV, $cordovaGeolocation, $ionicPlatform) {
+    function CategoriesShowController($http,
+                                      $stateParams,
+                                      ENV,
+                                      $cordovaGeolocation,
+                                      $ionicPlatform,
+                                      $state,
+                                      $ionicHistory) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -30,12 +36,16 @@
         }
 
         function openCategory($event, category) {
-            $state.go('tab.categories-show', {categoryId: category.id});
+            if(window.location.href.indexOf('nearby') >= 0) {
+                $state.go('tab.nearby-categories-show', {categoryId: category.id});
+            } else {
+                $state.go('tab.categories-show', {categoryId: category.id});
+            }
             $event.stopPropagation();
         }
 
         function getCategories() {
-            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            var posOptions = {timeout: 5000, enableHighAccuracy: false};
             $cordovaGeolocation
                 .getCurrentPosition(posOptions)
                 .then(function (position) {
@@ -51,16 +61,23 @@
                         vm.places = response.data;
                     });
 
-                    $http.get(ENV.apiEndpoint + 'categories/' + $stateParams.categoryId, {
-                        params: {
-                            lat: lat,
-                            lon: long
-                        }
-                    }).then(function(response) {
+                    $http.get(ENV.apiEndpoint + 'categories/' + $stateParams.categoryId).then(function(response) {
                         vm.category = response.data;
                     });
                 }, function (err) {
-                    // error
+                    console.log('Error didnt loaded');
+                    $http.get(ENV.apiEndpoint + 'categories/' + $stateParams.categoryId + '/places', {
+                        params: {
+                            lat: -27.49611,
+                            lon:  153.00207
+                        }
+                    }).then(function(response) {
+                        vm.places = response.data;
+                    });
+
+                    $http.get(ENV.apiEndpoint + 'categories/' + $stateParams.categoryId).then(function(response) {
+                        vm.category = response.data;
+                    });
                 });
         }
     }

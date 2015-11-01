@@ -20,6 +20,7 @@
         vm.openCategory = openCategory;
         vm.share = share;
 
+
         activate();
 
         ////////////////
@@ -59,27 +60,22 @@
         }
 
         function openCategory($event, category) {
-            $state.go('tab.categories-show', {categoryId: category.id});
+            $state.go('tab.nearby-categories-show', {categoryId: category.id});
             $event.stopPropagation();
         }
 
         function getNearby() {
             console.log('Getting location');
-            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            var posOptions = {timeout: 5000, enableHighAccuracy: false};
             $cordovaGeolocation
                 .getCurrentPosition(posOptions)
                 .then(function (position) {
                     console.log('Lot locatin', position);
                     var lat = position.coords.latitude
-                    var long = position.coords.longitude
+                    var lon = position.coords.longitude
 
-                    $http.get(ENV.apiEndpoint + 'nearby', {
-                        params: {
-                            lat: lat,
-                            lon: long
-                        }
-                    }).then(function (response) {
-                        vm.places = response.data;
+                    getPlaces(lat, lon).then(function(places) {
+                        vm.places = places;
                     });
 
                     //$http.get(ENV.apiEndpoint + 'hotspots', {
@@ -92,8 +88,22 @@
                     //});
                 }, function (err) {
                     // error
-                    console.log('Failed');
+                    console.log('Failed, default location');
+                    getPlaces(-27.49611, 153.00207).then(function(places) {
+                        vm.places = places;
+                    });
                 });
+        }
+
+        function getPlaces(lat, lon) {
+            return $http.get(ENV.apiEndpoint + 'nearby', {
+                params: {
+                    lat: lat,
+                    lon: lon
+                }
+            }).then(function (response) {
+                return response.data;
+            });
         }
     }
 
