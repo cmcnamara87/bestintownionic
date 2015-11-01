@@ -3,8 +3,11 @@
         <img ng-src="{{ place.image_url }}">
         <h2>{{ place.name }}</h2>
         <p>{{ place.address }}</p>
-        <p>{{ place.distance | number:1}} km </p>
+        <p class="distance">{{ place.distance | number:1}} km </p>
         <div >
+            <!--<a class="tag" style="background-color:#33CD5F;color:white;">-->
+                <!--<i class="icon ion-ios-navigate"></i> {{ place.distance | number:1}} km-->
+            <!--</a>-->
             <a ng-repeat="rank in place.ranks" ng-click="vm.openCategory($event, rank.category)" href class="tag">
                 {{ rank.category.name }} #{{ rank.rank }}
             </a>
