@@ -22,8 +22,12 @@ angular.module('bestintown', [
 ])
 
     .run(function ($ionicPlatform, $cordovaInAppBrowser, $ionicPopup, ENV, $http, $cordovaGoogleAnalytics,
-                   $rootScope, $ionicNavBarDelegate, $document, $timeout) {
+                   $rootScope, $ionicNavBarDelegate, $document, $timeout, $cordovaSplashscreen) {
         $ionicPlatform.ready(function () {
+
+            $timeout(function() {
+                $cordovaSplashscreen.hide();
+            }, 300);
 
             // turn on debug mode
             // https://github.com/danwilson/google-analytics-plugin#javascript-usage
