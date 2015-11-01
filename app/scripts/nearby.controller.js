@@ -12,7 +12,8 @@
                               ENV,
                               $state,
                               $cordovaSocialSharing,
-                              $ionicLoading) {
+                              $ionicLoading,
+                              $timeout) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -40,23 +41,32 @@
                 template: 'Taking screenshot!'
             });
 
-            navigator.screenshot.save(function(error,res){
-                if(error){
+            $timeout(function() {
+                if(!navigator.screenshot) {
                     $ionicLoading.hide();
-                    window.alert(error);
-                }else{
-                    $ionicLoading.hide();
-                    console.log('ok',res.filePath);
-
-                    $cordovaSocialSharing
-                        .share('Checkout out these places #bestintown', 'Best in town', res.filePath) // Share via native share sheet
-                        .then(function(result) {
-                        }, function(err) {
-                            // An error occured. Show a message to the user
-                            window.alert('error');
-                        });
+                    return;
                 }
-            });
+                navigator.screenshot.save(function(error,res){
+                    if(error){
+                        $ionicLoading.hide();
+                        window.alert(error);
+                    }else{
+                        $ionicLoading.hide();
+                        console.log('ok',res.filePath);
+
+                        $cordovaSocialSharing
+                            .share('Checkout out these places #bestintown', 'Best in town', res.filePath) // Share via native share sheet
+                            .then(function(result) {
+                            }, function(err) {
+                                // An error occured. Show a message to the user
+                                window.alert('error');
+                            });
+                    }
+                });
+            }, 500);
+
+
+
 
 
         }
