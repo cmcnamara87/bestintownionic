@@ -10,4 +10,10 @@
   display: inline-block;
   margin-bottom: 5px;
   margin-right: 5px;
+
+  &:active {
+    background-color: #ECDD6E;
+    position: relative;
+    top: 2px;
+  }
 }
