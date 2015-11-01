@@ -46,20 +46,22 @@
                 if(!navigator.screenshot) {
                     return;
                 }
-                navigator.screenshot.save(function(error,res){
-                    if(error){
-                        window.alert(error);
-                    }else{
-                        console.log('ok',res.filePath);
-                        $cordovaSocialSharing
-                            .share('Checkout out these places #bestintown', 'Best in town', res.filePath) // Share via native share sheet
-                            .then(function(result) {
-                            }, function(err) {
-                                // An error occured. Show a message to the user
-                                window.alert('error');
-                            });
-                    }
-                });
+                $timeout(function() {
+                    navigator.screenshot.save(function(error,res){
+                        if(error){
+                            window.alert(error);
+                        }else{
+                            console.log('ok',res.filePath);
+                            $cordovaSocialSharing
+                                .share('Checkout out these places #bestintown', 'Best in town', res.filePath) // Share via native share sheet
+                                .then(function(result) {
+                                }, function(err) {
+                                    // An error occured. Show a message to the user
+                                    window.alert('error');
+                                });
+                        }
+                    });
+                }, 200);
             }, 500);
 
 
