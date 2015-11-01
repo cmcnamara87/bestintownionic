@@ -8,7 +8,8 @@
     /* @ngInject */
     function CategoriesController($http,
                                   ENV,
-                                  $cordovaGeolocation, $ionicPlatform) {
+                                  $cordovaGeolocation, $ionicPlatform,
+                                  $cordovaGoogleAnalytics) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -22,6 +23,7 @@
         function activate() {
             $ionicPlatform.ready(function () {
                 getCategories();
+                $cordovaGoogleAnalytics.trackView('Categories');
             });
         }
 

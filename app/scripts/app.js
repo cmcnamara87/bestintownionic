@@ -21,9 +21,9 @@ angular.module('bestintown', [
     'ngCordova'
 ])
 
-    .run(function ($ionicPlatform, $cordovaInAppBrowser, $ionicPopup, ENV, $http, $cordovaGoogleAnalytics) {
+    .run(function ($ionicPlatform, $cordovaInAppBrowser, $ionicPopup, ENV, $http, $cordovaGoogleAnalytics,
+                   $rootScope, $ionicNavBarDelegate, $document, $timeout) {
         $ionicPlatform.ready(function () {
-
 
             // turn on debug mode
             // https://github.com/danwilson/google-analytics-plugin#javascript-usage

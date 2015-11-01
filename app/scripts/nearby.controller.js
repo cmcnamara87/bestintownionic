@@ -13,7 +13,8 @@
                               $state,
                               $cordovaSocialSharing,
                               $ionicLoading,
-                              $timeout) {
+                              $timeout,
+                              $cordovaGoogleAnalytics) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -31,6 +32,7 @@
         function activate() {
             $ionicPlatform.ready(function () {
                 getNearby();
+                $cordovaGoogleAnalytics.trackView('Nearby');
             });
         }
 
