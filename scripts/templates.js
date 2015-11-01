@@ -114,8 +114,11 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "        <img ng-src=\"{{ place.image_url }}\">\n" +
     "        <h2>{{ place.name }}</h2>\n" +
     "        <p>{{ place.address }}</p>\n" +
-    "        <p>{{ place.distance | number:1}} km </p>\n" +
+    "        <!--<p class=\"distance\">{{ place.distance | number:1}} km </p>-->\n" +
     "        <div >\n" +
+    "            <a class=\"tag\" ng-href=\"geo:{{ place.latitude }},{{ place.longitude }}\" style=\"background-color:#33CD5F;color:white;\">\n" +
+    "                <i class=\"icon ion-ios-navigate\"></i> {{ place.distance | number:1}} km\n" +
+    "            </a>\n" +
     "            <a ng-repeat=\"rank in place.ranks\" ng-click=\"vm.openCategory($event, rank.category)\" href class=\"tag\">\n" +
     "                {{ rank.category.name }} #{{ rank.rank }}\n" +
     "            </a>\n" +
