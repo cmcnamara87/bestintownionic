@@ -6,7 +6,7 @@
     },
     "styles/style.css": {
       "filename": "styles/style.css",
-      "version": "4a4329b334b7833060d40d51d26bcadb63dc4a8688023c0c2ce270b2003b2541"
+      "version": "f1af3301ceeb55a424614222ef29207ce657411ef7f93e5edfded679dba9fc2a"
     },
     "scripts/vendor.js": {
       "filename": "scripts/vendor.js",
@@ -14,7 +14,7 @@
     },
     "scripts/scripts.js": {
       "filename": "scripts/scripts.js",
-      "version": "cb22e4a7ed0aaccc595c918d671e391c69ceaff71e60db9ad312e3608b69363a"
+      "version": "7a6f9412496d95eee40e504bef1b075dc8fbb01b628c837ca31b8964c6be2cd7"
     },
     "scripts/templates.js": {
       "filename": "scripts/templates.js",
