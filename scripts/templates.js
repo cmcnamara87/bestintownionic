@@ -207,7 +207,7 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "    </ion-tab>\n" +
     "\n" +
     "  <!-- Categories Tab -->\n" +
-    "  <ion-tab title=\"Categories\" icon-off=\"ion-ios-list-outline\" icon-on=\"ion-ios-list-outline\" href=\"#/tab/categories\">\n" +
+    "  <ion-tab title=\"Categories\" icon-off=\"ion-ios-location\" icon-on=\"ion-ios-location\" href=\"#/tab/categories\">\n" +
     "    <ion-nav-view name=\"tab-categories\"></ion-nav-view>\n" +
     "  </ion-tab>\n" +
     "\n" +
