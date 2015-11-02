@@ -26,17 +26,22 @@
 }
 
 .bar.bar-balanced {
-  background-color: #00ce8d;
+  background-color: #00ce8d !important;
   .button {
-    background-color: #00ce8d;
+    background-color: #00ce8d !important;
   }
 }
-
+.tabs-top.tabs-striped .tab-item.tab-item-active, .tabs-top.tabs-striped .tab-item.active, .tabs-top.tabs-striped .tab-item.activated {
+  border-color: #00CE8D;
+  color: #00aa74;
+}
+/*
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
   border-color: #00CE8D;
   color: #00aa74 !important;
 }
+
 .tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
   border-color: #00CE8D;
   color: #00aa74 !important;
-}
+}*/

@@ -23,6 +23,11 @@ angular.module('bestintown', [
 
     .run(function ($ionicPlatform, $ionicConfig, $cordovaInAppBrowser, $ionicPopup, ENV, $http, $cordovaGoogleAnalytics,
                    $rootScope, $ionicNavBarDelegate, $document, $timeout, $cordovaSplashscreen) {
+
+        //$ionicConfig.tabs.position("top");
+        //$ionicConfig.tabs.style("striped");
+        //$ionicConfig.navBar.alignTitle("left");
+
         $ionicPlatform.ready(function () {
 
 
