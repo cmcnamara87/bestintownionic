@@ -6,7 +6,7 @@
     },
     "styles/style.css": {
       "filename": "styles/style.css",
-      "version": "bd31d5e46b7c5abf687026790cb8557a0506ed9844b6e4270450f1512ac9497a"
+      "version": "f176314e5b9ac5ba28e459da8f610276529c1bd9e2e9ab8d7ffbcfa0ca0ae04a"
     },
     "scripts/vendor.js": {
       "filename": "scripts/vendor.js",
@@ -14,11 +14,11 @@
     },
     "scripts/scripts.js": {
       "filename": "scripts/scripts.js",
-      "version": "d5fa72571b90843d3a3157c39ab87a4bcfc7636b643e9538647ef94fdb6e9152"
+      "version": "638bab3c190aa5989ae6f407bb3e0a8b3d910b889c03e02ac0343e1e07f5ddb9"
     },
     "scripts/templates.js": {
       "filename": "scripts/templates.js",
-      "version": "fff935bea99d8d384a959a4cb70349fa3c7709725c3daffee96e3e87fccd4055"
+      "version": "a15d813bfad635bc3d53a8d5dac2d352da9130e2cc8f2765104da48db109e6bc"
     },
     "fonts/ionicons.eot": {
       "filename": "fonts/ionicons.eot",
