@@ -21,30 +21,29 @@ angular.module('bestintown', [
     'ngCordova'
 ])
 
-    .run(function ($ionicPlatform, $cordovaInAppBrowser, $ionicPopup, ENV, $http, $cordovaGoogleAnalytics,
+    .run(function ($ionicPlatform, $ionicConfig, $cordovaInAppBrowser, $ionicPopup, ENV, $http, $cordovaGoogleAnalytics,
                    $rootScope, $ionicNavBarDelegate, $document, $timeout, $cordovaSplashscreen) {
         $ionicPlatform.ready(function () {
 
-            $timeout(function() {
-                $cordovaSplashscreen.hide();
-            }, 300);
 
-            // turn on debug mode
-            // https://github.com/danwilson/google-analytics-plugin#javascript-usage
-            $cordovaGoogleAnalytics.debugMode();
+            console.log('Ionic platform ready');
+            if(window.analytics) {
+                // turn on debug mode
+                // https://github.com/danwilson/google-analytics-plugin#javascript-usage
+                $cordovaGoogleAnalytics.debugMode();
 
-            // start tracker
-            // https://developers.google.com/analytics/devguides/collection/analyticsjs/
+                // start tracker
+                // https://developers.google.com/analytics/devguides/collection/analyticsjs/
 
-            $cordovaGoogleAnalytics.startTrackerWithId('UA-51312192-7');
+                $cordovaGoogleAnalytics.startTrackerWithId('UA-51312192-7');
+            }
 
-            // track a view
-            // https://developers.google.com/analytics/devguides/collection/analyticsjs/screens
-            // Hint: Currently no support for appName, appId, appVersion, appInstallerId
-            //       If you need support for it, please create an issue on github:
-            //       https://github.com/driftyco/ng-cordova/issues
+            if(navigator.splashscreen) {
+                $timeout(function() {
+                    $cordovaSplashscreen.hide();
+                }, 300);
+            }
 
-            $cordovaGoogleAnalytics.trackView('Home Screen');
 
             if(window.cordova) {
                 window.open = cordova.InAppBrowser.open;

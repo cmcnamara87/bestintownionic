@@ -32,7 +32,9 @@
         function activate() {
             $ionicPlatform.ready(function () {
                 getNearby();
-                $cordovaGoogleAnalytics.trackView('Nearby');
+                if(window.analytics) {
+                    $cordovaGoogleAnalytics.trackView('Nearby');
+                }
             });
         }
 

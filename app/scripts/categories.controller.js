@@ -23,7 +23,9 @@
         function activate() {
             $ionicPlatform.ready(function () {
                 getCategories();
-                $cordovaGoogleAnalytics.trackView('Categories');
+                if(window.analytics) {
+                    $cordovaGoogleAnalytics.trackView('Categories');
+                }
             });
         }
 
