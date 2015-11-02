@@ -84,6 +84,7 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "            <i class=\"icon ion-share\"></i>\n" +
     "        </button>\n" +
     "    </ion-nav-buttons>\n" +
+    "\n" +
     "    <ion-content>\n" +
     "        <ion-list>\n" +
     "            <ion-item class=\"text-center\" ng-hide=\"vm.places\">\n" +
