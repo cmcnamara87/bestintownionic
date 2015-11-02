@@ -68,7 +68,8 @@
     {
       "locator": "https://github.com/robertklein/cordova-ios-security.git",
       "id": "sk.kcorp.cordova.ios-security"
-    }
+    },
+    "cordova-plugin-whitelist"
   ],
   "cordovaPlatforms": [
     "ios",
