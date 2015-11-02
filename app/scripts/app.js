@@ -91,7 +91,7 @@ angular.module('bestintown', [
 
                 push.on('error', function(e) {
                     // e.message
-                    console.log(e);
+                    console.log('Push notification error', e);
                 });
             }
 

@@ -121,6 +121,9 @@
                 }
             }).then(function (response) {
                 return response.data;
+            }, function() {
+                console.log('Failed to places');
+                return [];
             });
         }
     }

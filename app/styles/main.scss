@@ -10,6 +10,7 @@
   display: inline-block;
   margin-top: 5px;
   margin-right: 5px;
+  white-space: nowrap;
 
   &:active {
     background-color: #ECDD6E;
@@ -32,8 +33,10 @@
 }
 
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
-  color: #00aa74;
+  border-color: #00CE8D;
+  color: #00aa74 !important;
 }
 .tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
   border-color: #00CE8D;
+  color: #00aa74 !important;
 }
