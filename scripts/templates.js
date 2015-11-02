@@ -202,12 +202,12 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "<ion-tabs class=\"tabs-icon-top tabs-color-active-positive\">\n" +
     "\n" +
     "    <!-- Nearby Tab -->\n" +
-    "    <ion-tab title=\"Nearby\" icon-off=\"ion-radio-waves\" icon-on=\"ion-radio-waves\" href=\"#/tab/nearby\">\n" +
+    "    <ion-tab title=\"Nearby\" icon-off=\"ion-ios-location\" icon-on=\"ion-ios-location\" href=\"#/tab/nearby\">\n" +
     "        <ion-nav-view name=\"tab-nearby\"></ion-nav-view>\n" +
     "    </ion-tab>\n" +
     "\n" +
     "  <!-- Categories Tab -->\n" +
-    "  <ion-tab title=\"Categories\" icon-off=\"ion-ios-location\" icon-on=\"ion-ios-location\" href=\"#/tab/categories\">\n" +
+    "  <ion-tab title=\"Categories\" icon-off=\"ion-ios-list-outline\" icon-on=\"ion-ios-list-outline\" href=\"#/tab/categories\">\n" +
     "    <ion-nav-view name=\"tab-categories\"></ion-nav-view>\n" +
     "  </ion-tab>\n" +
     "\n" +
