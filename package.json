@@ -56,20 +56,22 @@
   "cordovaPlugins": [
     "org.apache.cordova.device",
     "org.apache.cordova.console",
-    "com.ionic.keyboard",
     "org.apache.cordova.geolocation",
     "cordova-plugin-x-socialsharing",
     "com.darktalker.cordova.screenshot",
     "phonegap-plugin-push",
-    "org.apache.cordova.console",
-    "org.apache.cordova.geolocation",
-    "com.ionic.keyboard",
     "cordova-plugin-file",
     "cordova-plugin-file-transfer",
     "cordova-plugin-google-analytics",
-    "cordova-plugin-splashscreen"
+    "cordova-plugin-splashscreen",
+    "com.ionic.keyboard",
+    {
+      "locator": "https://github.com/robertklein/cordova-ios-security.git",
+      "id": "sk.kcorp.cordova.ios-security"
+    }
   ],
   "cordovaPlatforms": [
-    "ios"
+    "ios",
+    "android"
   ]
 }
