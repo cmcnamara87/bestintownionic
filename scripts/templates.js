@@ -11,6 +11,9 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "            <ion-item class=\"text-center\" ng-hide=\"vm.places\">\n" +
     "                <ion-spinner></ion-spinner>\n" +
     "            </ion-item>\n" +
+    "            <ion-item ng-show=\"vm.isUsingDefault\" class=\"item-text-wrap\">\n" +
+    "                No places in your area, showing Brisbane, Australia.\n" +
+    "            </ion-item>\n" +
     "            <div ng-repeat=\"place in vm.places\">\n" +
     "                <ng-include src=\"'templates/place.html'\"></ng-include>\n" +
     "            </div>\n" +
@@ -26,6 +29,9 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "        <ion-list>\n" +
     "            <ion-item class=\"text-center\" ng-hide=\"vm.categories\">\n" +
     "                <ion-spinner></ion-spinner>\n" +
+    "            </ion-item>\n" +
+    "            <ion-item ng-show=\"vm.isUsingDefault\" class=\"item-text-wrap\">\n" +
+    "                No places in your area, showing Brisbane, Australia.\n" +
     "            </ion-item>\n" +
     "            <ion-item ng-repeat=\"category in vm.categories\"\n" +
     "                      ui-sref=\"tab.categories-show({categoryId: category.id})\">\n" +
@@ -55,28 +61,6 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('templates/hotspots-show.html',
-    "<ion-view view-title=\"Location\">\n" +
-    "    <!--<ion-nav-title>-->\n" +
-    "        <!--{{ vm.hotspot.name }}-->\n" +
-    "    <!--</ion-nav-title>-->\n" +
-    "    <ion-content>\n" +
-    "        <div>\n" +
-    "            {{ vm.lat }} {{ vm.lon }}\n" +
-    "        </div>\n" +
-    "        <ion-list>\n" +
-    "            <ion-item class=\"text-center\" ng-hide=\"vm.places\">\n" +
-    "                <ion-spinner></ion-spinner>\n" +
-    "            </ion-item>\n" +
-    "            <div ng-repeat=\"place in vm.places\">\n" +
-    "                <ng-include src=\"'templates/place.html'\"></ng-include>\n" +
-    "            </div>\n" +
-    "        </ion-list>\n" +
-    "    </ion-content>\n" +
-    "</ion-view>\n"
-  );
-
-
   $templateCache.put('templates/nearby.html',
     "<ion-view view-title=\"Nearby\">\n" +
     "    <ion-nav-buttons side=\"Secondary\">\n" +
@@ -89,6 +73,9 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "        <ion-list>\n" +
     "            <ion-item class=\"text-center\" ng-hide=\"vm.places\">\n" +
     "                <ion-spinner></ion-spinner>\n" +
+    "            </ion-item>\n" +
+    "            <ion-item ng-show=\"vm.isUsingDefault\" class=\"item-text-wrap\">\n" +
+    "                No places in your area, showing Brisbane, Australia.\n" +
     "            </ion-item>\n" +
     "            <div ng-repeat=\"place in vm.places\">\n" +
     "                <ng-include src=\"'templates/place.html'\"></ng-include>\n" +
