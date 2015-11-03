@@ -7,8 +7,8 @@
             <ion-item class="text-center" ng-hide="vm.places">
                 <ion-spinner></ion-spinner>
             </ion-item>
-            <ion-item ng-show="vm.isUsingDefault">
-                No places in your area, showing Brisbane Australia.
+            <ion-item ng-show="vm.isUsingDefault" class="item-text-wrap">
+                No places in your area, showing Brisbane, Australia.
             </ion-item>
             <div ng-repeat="place in vm.places">
                 <ng-include src="'templates/place.html'"></ng-include>

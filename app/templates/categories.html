@@ -4,8 +4,8 @@
             <ion-item class="text-center" ng-hide="vm.categories">
                 <ion-spinner></ion-spinner>
             </ion-item>
-            <ion-item ng-show="vm.isUsingDefault">
-                No places in your area, showing Brisbane Australia.
+            <ion-item ng-show="vm.isUsingDefault" class="item-text-wrap">
+                No places in your area, showing Brisbane, Australia.
             </ion-item>
             <ion-item ng-repeat="category in vm.categories"
                       ui-sref="tab.categories-show({categoryId: category.id})">
