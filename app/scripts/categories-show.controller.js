@@ -12,7 +12,7 @@
                                       $cordovaGeolocation,
                                       $ionicPlatform,
                                       $state,
-                                      $ionicHistory) {
+                                      defaultLatLon) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -59,6 +59,8 @@
                         }
                     }).then(function(response) {
                         vm.places = response.data;
+                    }, function() {
+                        getDefaults();
                     });
 
                     $http.get(ENV.apiEndpoint + 'categories/' + $stateParams.categoryId).then(function(response) {
@@ -66,19 +68,24 @@
                     });
                 }, function (err) {
                     console.log('Error didnt loaded');
-                    $http.get(ENV.apiEndpoint + 'categories/' + $stateParams.categoryId + '/places', {
-                        params: {
-                            lat: -27.49611,
-                            lon:  153.00207
-                        }
-                    }).then(function(response) {
-                        vm.places = response.data;
-                    });
+                    getDefaults();
 
                     $http.get(ENV.apiEndpoint + 'categories/' + $stateParams.categoryId).then(function(response) {
                         vm.category = response.data;
                     });
                 });
+        }
+
+        function getDefaults() {
+            vm.isUsingDefault = true;
+            $http.get(ENV.apiEndpoint + 'categories/' + $stateParams.categoryId + '/places', {
+                params: {
+                    lat: defaultLatLon.lat,
+                    lon:  defaultLatLon.lon
+                }
+            }).then(function(response) {
+                vm.places = response.data;
+            });
         }
     }
 

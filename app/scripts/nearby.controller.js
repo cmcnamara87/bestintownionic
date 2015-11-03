@@ -14,7 +14,8 @@
                               $cordovaSocialSharing,
                               $ionicLoading,
                               $timeout,
-                              $cordovaGoogleAnalytics) {
+                              $cordovaGoogleAnalytics,
+                              defaultLatLon) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -94,25 +95,24 @@
 
                     getPlaces(lat, lon).then(function(places) {
                         vm.places = places;
+                    }, function() {
+                        console.log('Failed getting places');
+                        getDefaultPlaces();
                     });
-
-                    //$http.get(ENV.apiEndpoint + 'hotspots', {
-                    //    params: {
-                    //        lat: lat,
-                    //        lon: long
-                    //    }
-                    //}).then(function (response) {
-                    //    vm.hotspots = response.data;
-                    //});
                 }, function (err) {
                     // error
                     console.log('Failed, default location');
-                    getPlaces(-27.49611, 153.00207).then(function(places) {
-                        vm.places = places;
-                    });
+                    getDefaultPlaces();
                 });
         }
 
+        function getDefaultPlaces() {
+            vm.isUsingDefault = true;
+            console.log('Getting default places');
+            getPlaces(defaultLatLon.lat, defaultLatLon.lon).then(function(places) {
+                vm.places = places;
+            });
+        }
         function getPlaces(lat, lon) {
             return $http.get(ENV.apiEndpoint + 'nearby', {
                 params: {
@@ -121,9 +121,6 @@
                 }
             }).then(function (response) {
                 return response.data;
-            }, function() {
-                console.log('Failed to places');
-                return [];
             });
         }
     }
