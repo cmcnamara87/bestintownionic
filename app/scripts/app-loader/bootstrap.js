@@ -95,7 +95,6 @@
                                 var resp = request.responseText;
                                 var re = new RegExp('url\\(\.\./', 'g');
                                 resp = resp.replace(re, 'url(');
-                                console.log(resp);
                                 el = document.createElement('style');
                                 el.type = 'text/css';
                                 if (el.styleSheet) {
