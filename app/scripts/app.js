@@ -18,7 +18,8 @@ angular.module('bestintown', [
     'ionic',
     'config',
     'ngAnimate',
-    'ngCordova'
+    'ngCordova',
+    'ngIOS9UIWebViewPatch'
 ])
 
     .run(function ($ionicPlatform, $ionicConfig, $cordovaInAppBrowser, $ionicPopup, ENV, $http, $cordovaGoogleAnalytics,
