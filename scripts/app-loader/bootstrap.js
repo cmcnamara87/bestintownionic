@@ -84,8 +84,7 @@
                 } else if (src.substr(-4) === '.css') {
                     if (src.indexOf('://') >= 0) {
                         // okay lets ajax it in
-                        console.log('creating style element');
-                        console.log(src);
+                        console.log('Creating style element');
 
                         var request = new XMLHttpRequest();
                         request.open('GET', src, true);
@@ -96,7 +95,6 @@
                                 var resp = request.responseText;
                                 var re = new RegExp('url\\(\.\./', 'g');
                                 resp = resp.replace(re, 'url(');
-                                console.log(resp);
                                 el = document.createElement('style');
                                 el.type = 'text/css';
                                 if (el.styleSheet) {
@@ -113,7 +111,7 @@
 
                         request.onerror = function () {
                             // There was a connection error of some sort
-                            console.log('on error');
+                            console.log('Error ajaxing stylesheet');
                         };
 
                         request.send();
@@ -121,7 +119,7 @@
                         //$("head").append("<style>" + data + "</style>");
                         return;
                     } else {
-                        console.log('adding through link');
+                        console.log('Adding through link');
                         el = document.createElement('link');
                         el.rel = "stylesheet";
                         el.href = src + '?' + now;

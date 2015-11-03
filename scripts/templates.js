@@ -78,7 +78,7 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('templates/nearby.html',
-    "<ion-view view-title=\"Nearby\">\n" +
+    "<ion-view view-title=\"Nearby 2\">\n" +
     "    <ion-nav-buttons side=\"Secondary\">\n" +
     "        <button class=\"button\" ng-click=\"vm.share()\">\n" +
     "            <i class=\"icon ion-share\"></i>\n" +
