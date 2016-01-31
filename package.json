@@ -69,7 +69,18 @@
       "locator": "https://github.com/robertklein/cordova-ios-security.git",
       "id": "sk.kcorp.cordova.ios-security"
     },
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "com.darktalker.cordova.screenshot",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-file-transfer",
+    "org.apache.cordova.geolocation",
+    "org.apache.cordova.device",
+    "cordova-plugin-file",
+    "com.ionic.keyboard",
+    "cordova-plugin-google-analytics",
+    "cordova-plugin-x-socialsharing",
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": [
     "ios",

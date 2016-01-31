@@ -15,25 +15,31 @@
                               $ionicLoading,
                               $timeout,
                               $cordovaGoogleAnalytics,
-                              defaultLatLon) {
+                              defaultLatLon,
+                              $q) {
         /* jshint validthis: true */
         var vm = this;
+        var searchCanceller = $q.defer();
 
         vm.activate = activate;
         vm.title = 'Nearby';
         vm.openYelp = openYelp;
         vm.openCategory = openCategory;
         vm.share = share;
+        vm.search = search;
 
+
+        $ionicPlatform.on("resume", getNearby);
 
         activate();
 
         ////////////////
 
         function activate() {
+            vm.state = 'LOADING';
             $ionicPlatform.ready(function () {
                 getNearby();
-                if(window.analytics) {
+                if (window.analytics) {
                     $cordovaGoogleAnalytics.trackView('Nearby');
                 }
             });
@@ -46,21 +52,21 @@
                 template: 'Taking screenshot!'
             });
 
-            $timeout(function() {
+            $timeout(function () {
                 $ionicLoading.hide();
-                if(!navigator.screenshot) {
+                if (!navigator.screenshot) {
                     return;
                 }
-                $timeout(function() {
-                    navigator.screenshot.save(function(error,res){
-                        if(error){
+                $timeout(function () {
+                    navigator.screenshot.save(function (error, res) {
+                        if (error) {
                             window.alert(error);
-                        }else{
-                            console.log('ok',res.filePath);
+                        } else {
+                            console.log('ok', res.filePath);
                             $cordovaSocialSharing
                                 .share('Checkout out these places #bestintown', 'Best in town', res.filePath) // Share via native share sheet
-                                .then(function(result) {
-                                }, function(err) {
+                                .then(function (result) {
+                                }, function (err) {
                                     // An error occured. Show a message to the user
                                     window.alert('error');
                                 });
@@ -70,10 +76,8 @@
             }, 500);
 
 
-
-
-
         }
+
         function openYelp(place) {
             window.open(place.external_url, '_blank');
         }
@@ -90,14 +94,29 @@
                 .getCurrentPosition(posOptions)
                 .then(function (position) {
                     console.log('Lot locatin', position);
-                    var lat = position.coords.latitude
-                    var lon = position.coords.longitude
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
 
-                    getPlaces(lat, lon).then(function(places) {
+                    // Setup the city id
+                    $http.get(ENV.apiEndpoint + 'cities', {
+                        params: {
+                            lat: lat,
+                            lon: lon
+                        }
+                    }).then(function (response) {
+                        var cities = response.data;
+                        if (cities.length) {
+                            vm.city = cities[0];
+                        }
+                    });
+
+                    // Get the places
+                    return getPlaces(lat, lon).then(function (places) {
+                        vm.state = 'LOADED';
                         vm.places = places;
-                    }, function() {
+                    }, function () {
                         console.log('Failed getting places');
-                        getDefaultPlaces();
+                        return getDefaultPlaces();
                     });
                 }, function (err) {
                     // error
@@ -109,10 +128,12 @@
         function getDefaultPlaces() {
             vm.isUsingDefault = true;
             console.log('Getting default places');
-            getPlaces(defaultLatLon.lat, defaultLatLon.lon).then(function(places) {
+            getPlaces(defaultLatLon.lat, defaultLatLon.lon).then(function (places) {
+                vm.state = 'LOADED';
                 vm.places = places;
             });
         }
+
         function getPlaces(lat, lon) {
             return $http.get(ENV.apiEndpoint + 'nearby', {
                 params: {
@@ -121,6 +142,33 @@
                 }
             }).then(function (response) {
                 return response.data;
+            });
+        }
+
+        function search(term) {
+            if (searchCanceller) {
+                searchCanceller.resolve('cancelling search');
+            }
+            searchCanceller = $q.defer();
+
+            if (!term.length) {
+                vm.places = [];
+                vm.state = 'LOADING';
+                return getPlaces(defaultLatLon.lat, defaultLatLon.lon).then(function (places) {
+                    vm.state = 'LOADED';
+                    vm.places = places;
+                });
+            }
+            vm.places = [];
+            vm.state = 'LOADING';
+            // get the city first
+            var posOptions = {timeout: 5000, enableHighAccuracy: false};
+
+            return $http.get(ENV.apiEndpoint + 'search/' + vm.city.id + '/' + term, {
+                timeout: searchCanceller.promise
+            }).then(function (response) {
+                vm.state = 'LOADED';
+                vm.places = response.data;
             });
         }
     }
