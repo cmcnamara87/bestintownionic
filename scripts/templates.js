@@ -71,7 +71,22 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <ion-content>\n" +
     "        <ion-list>\n" +
-    "            <ion-item class=\"text-center\" ng-hide=\"vm.places\">\n" +
+    "            <label class=\"item  item-input\" ng-show=\"vm.city\">\n" +
+    "                <i class=\"icon ion-ios-search-strong placeholder-icon\"></i>\n" +
+    "\n" +
+    "                <input type=\"search\"\n" +
+    "                       placeholder=\"Search\"\n" +
+    "                       ng-model=\"vm.searchTerm\"\n" +
+    "                       ng-change=\"vm.search(vm.searchTerm)\"\n" +
+    "                       ng-model-options=\"{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }\">\n" +
+    "\n" +
+    "                <a ng-if=\"vm.searchTerm != ''\"\n" +
+    "                   on-touch=\"vm.searchTerm=''; vm.search('')\">\n" +
+    "                    <i class=\"icon ion-ios-close placeholder-icon\"></i>\n" +
+    "                </a>\n" +
+    "            </label>\n" +
+    "\n" +
+    "            <ion-item class=\"text-center\" ng-show=\"vm.state == 'LOADING'\">\n" +
     "                <ion-spinner></ion-spinner>\n" +
     "            </ion-item>\n" +
     "            <ion-item ng-show=\"vm.isUsingDefault\" class=\"item-text-wrap\">\n" +
@@ -101,12 +116,13 @@ angular.module('bestintown').run(['$templateCache', function($templateCache) {
     "        <img ng-src=\"{{ place.image_url }}\">\n" +
     "        <h2>{{ place.name }}</h2>\n" +
     "        <p>{{ place.address }}</p>\n" +
-    "        <p class=\"distance\">{{ place.distance | number:1}} km </p>\n" +
+    "        <p class=\"distance\" ng-show=\"place.distance\">{{ place.distance | number:1}} km </p>\n" +
     "        <div >\n" +
     "            <!--<a class=\"tag\" style=\"background-color:#33CD5F;color:white;\">-->\n" +
     "                <!--<i class=\"icon ion-ios-navigate\"></i> {{ place.distance | number:1}} km-->\n" +
     "            <!--</a>-->\n" +
-    "            <a ng-repeat=\"rank in place.ranks\" ng-click=\"vm.openCategory($event, rank.category)\" href class=\"tag\">\n" +
+    "            <a ng-repeat=\"rank in place.ranks\" ng-click=\"vm.openCategory($event, rank.category)\" href class=\"tag\"\n" +
+    "                    ng-show=\"rank.rank > 0\">\n" +
     "                {{ rank.category.name }} #{{ rank.rank }}\n" +
     "            </a>\n" +
     "        </div>\n" +
